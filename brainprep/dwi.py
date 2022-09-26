@@ -271,15 +271,15 @@ def Compute_and_Apply_susceptibility_correction(subject,
         cmd = ["bash /extra/pipeline.sh"]
         check_command(cmd[0])
         execute_command(cmd)
-        susceptibility_dir_synb0 = os.path.join(susceptibility_dir,
-                                                "topup-synb0")
+        susceptibility_dir_synb0 = os.path.join(outdir,
+                                                "synb0_outputs")
 
-        if not os.path.isdir(susceptibility_dir_synb0):
-            cmd = ["mkdir", "-p", susceptibility_dir_synb0]
-            execute_command(cmd)
-        cmd = ["cp", synb0_output, susceptibility_dir_synb0]
-        check_command(cmd[0])
-        execute_command(cmd)
+        # if not os.path.isdir(susceptibility_dir_synb0):
+        #     cmd = ["mkdir", "-p", susceptibility_dir_synb0]
+        #     execute_command(cmd)
+        # cmd = ["cp", synb0_output, susceptibility_dir_synb0]
+        # check_command(cmd[0])
+        # execute_command(cmd)
         outputs["eddy_file_from_topup"] = \
             os.path.join(susceptibility_dir_synb0,
                          "topup")
