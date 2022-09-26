@@ -203,16 +203,6 @@ def Compute_and_Apply_susceptibility_correction(subject,
         # os.mkdir(synb0_input_dir)
         # os.mkdir(synb0_output_dir)
         print(synb0_input_dir)
-        # Prepare t1 for synb0
-        cmd = ["ln", t1,
-               os.path.join(synb0_input_dir, "T1.nii.gz")]
-        check_command(cmd[0])
-        execute_command(cmd)
-        # Prepare b0 for synb0
-        cmd = ["ln", outputs["nodif"],
-               os.path.join(synb0_input_dir, "b0.nii.gz")]
-        check_command(cmd[0])
-        execute_command(cmd)
 
         # Prepare acqp file for synb0
         data = []
@@ -253,10 +243,25 @@ def Compute_and_Apply_susceptibility_correction(subject,
             open_file.write(row2 + "\n")
         outputs["acqp"] = acqp_file
 
-        # Prepare freesurfer licence for synb0
-        cmd = ["ln", license_fs, "/extra/freesurfer/license.txt"]
-        check_command(cmd[0])
-        execute_command(cmd)
+        # # Prepare freesurfer licence for synb0
+        # cmd = ["ln", license_fs, "/extra/freesurfer/license.txt"]
+        # check_command(cmd[0])
+        # execute_command(cmd)
+        # # Prepare t1 for synb0
+        # cmd = ["cp", t1,
+        #        os.path.join(synb0_input_dir, "T1.nii.gz")]
+        # check_command(cmd[0])
+        # execute_command(cmd)
+        # # Prepare b0 for synb0
+        # cmd = ["cp", outputs["nodif"],
+        #        os.path.join(synb0_input_dir, "b0.nii.gz")]
+        # check_command(cmd[0])
+        # execute_command(cmd)
+
+        # Check binding
+        assert os.path.isfile("/INPUTS/T1.nii.gz")
+        assert os.path.isfile("/INPUTS/b0.nii.gz")
+        assert os.path.isfile("/extra/freesurfer/license.txt")
 
         # singularity run -e https://github.com/LoicDorval/brainprep
         # -B /home/ld265905/Documents/synb0_inputs/:/INPUTS:ro 
