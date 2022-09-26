@@ -204,12 +204,12 @@ def Compute_and_Apply_susceptibility_correction(subject,
         # os.mkdir(synb0_output_dir)
         print(synb0_input_dir)
         # Prepare t1 for synb0
-        cmd = ["cp", t1,
+        cmd = ["ln", t1,
                os.path.join(synb0_input_dir, "T1.nii.gz")]
         check_command(cmd[0])
         execute_command(cmd)
         # Prepare b0 for synb0
-        cmd = ["cp", outputs["nodif"],
+        cmd = ["ln", outputs["nodif"],
                os.path.join(synb0_input_dir, "b0.nii.gz")]
         check_command(cmd[0])
         execute_command(cmd)
